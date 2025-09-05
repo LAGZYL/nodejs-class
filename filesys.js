@@ -46,9 +46,41 @@ function appendWrite(filename, content) {
     console.log(`Content appended to ${filename} succesfully1`)
 }
 
+// rename file
+function renameFile(oldFileName, newFileName) {
+    fs.rename(oldFileName, newFileName, (err) => {
+        if(err){
+            console.log(`file name update error`)
+        }
+
+        console.log(`file name updated syccessfully`)
+    })
+}
+
+//delete file
+function deleteFile(filename) {
+    fs.unlink(filename, (err) => {
+        if(err){
+        console.log(`error deleting file`)
+        }
+        console.log(`${filename} deleted successfully`);
+    })
+    
+}
+
+async function asyncdeleteFile(filename) {
+    try{
+        await fs.unlink(filename);
+        console.log(`file ${filename}, has been deleteted successfully`)
+
+}catch(erroe){
+    console.log("there is error deleting this file")
+}   
+}
 
 
-module.exports = { myReadFile, writeToFile, customerGoods, appendWrite };
+
+module.exports = { myReadFile, writeToFile, customerGoods, appendWrite, renameFile, deleteFile, asyncdeleteFile };
 
 
 
